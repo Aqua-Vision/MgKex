@@ -275,22 +275,25 @@ KXUSERAPI UINT WINAPI GetDpiForWindow(
 	return GetDpiForSystem();
 }
 
-KXUSERAPI BOOL WINAPI AdjustWindowRectExForDpi(
-	IN OUT	LPRECT	Rect,
-	IN		ULONG	WindowStyle,
-	IN		BOOL	HasMenu,
-	IN		ULONG	WindowExStyle,
-	IN		ULONG	Dpi)
+KXUSERAPI BOOL AdjustWindowRectExForDpi(
+	IN OUT	RECT	*lpRect,
+	IN		DWORD	dwStyle,
+	IN		BOOL	bMenu,
+	IN		DWORD	dwExStyle,
+	IN		UINT	dpi)
 {
-	// I'm not sure how to implement this function properly.
-	// If it turns out to be important, I'll have to do some testing
-	// on a Win10 VM.
+	if (!lpRect) return FALSE;
 
-	return AdjustWindowRectEx(
-		Rect,
-		WindowStyle,
-		HasMenu,
-		WindowExStyle);
+	if (!AdjustWindowRectEx(lpRect, dwStyle, bMenu, dwExStyle)) {
+		return FALSE;
+	}
+
+	lpRect->left = lpRect->left * dpi / 96;
+	lpRect->top = lpRect->top * dpi / 96;
+	lpRect->right = lpRect->right * dpi / 96;
+	lpRect->bottom = lpRect->bottom * dpi / 96;
+
+	return TRUE;
 }
 
 KXUSERAPI UINT WINAPI GetDpiForShellUIComponent(
