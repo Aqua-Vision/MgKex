@@ -67,6 +67,11 @@ success. I hope to address this shortcoming in a future release.
 - Yuzu (gameplay was not tested)
 - Zig
 
+New programs added after fork was created:
+- Modrinth
+- Prism Launcher
+- paint.net (private beta release only, for now)
+
 See the **Application Compatibility List.docx** file, which is installed together
 with VxKex, for more information.
 
