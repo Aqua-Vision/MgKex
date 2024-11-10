@@ -282,18 +282,17 @@ KXUSERAPI BOOL AdjustWindowRectExForDpi(
 	IN		DWORD	dwExStyle,
 	IN		UINT	dpi)
 {
-	if (!lpRect) return FALSE;
-
-	if (!AdjustWindowRectEx(lpRect, dwStyle, bMenu, dwExStyle)) {
+	if(!AdjustWindowRectEx(lpRect, dwStyle, bMenu, dwExStyle))
 		return FALSE;
+	else
+	{
+		lpRect->left *= dpi/96;
+		lpRect->top *= dpi/96;
+		lpRect->right *= dpi/96;
+		lpRect->bottom *= dpi/96;
+		
+		return TRUE;
 	}
-
-	lpRect->left = lpRect->left * dpi / 96;
-	lpRect->top = lpRect->top * dpi / 96;
-	lpRect->right = lpRect->right * dpi / 96;
-	lpRect->bottom = lpRect->bottom * dpi / 96;
-
-	return TRUE;
 }
 
 KXUSERAPI UINT WINAPI GetDpiForShellUIComponent(
