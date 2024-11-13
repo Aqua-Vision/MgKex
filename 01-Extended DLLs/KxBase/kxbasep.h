@@ -113,3 +113,14 @@ VOID KxBaseAddKex3264ToBaseDefaultPath(
 
 NTSTATUS BaseInitializeCrypto(
 	VOID);
+	
+//
+// synch.c
+//
+
+KXBASEAPI BOOL GetOverlappedResultEx(
+	IN HANDLE hFile,
+	IN OVERLAPPED *lpOverlapped,
+	OUT DWORD *lpNumberOfBytesTransferred,
+	IN DWORD dwMilliseconds,
+	IN BOOL bAlertable);
