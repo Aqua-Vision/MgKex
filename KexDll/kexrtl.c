@@ -964,3 +964,22 @@ KEXAPI NTSTATUS NTAPI KexRtlAddGrowableFunctionTable(
 	return STATUS_NOT_IMPLEMENTED;
 #endif
 }
+
+KEXAPI NTSTATUS NTAPI KexRtlDeleteGrowableFunctionTable(
+	IN PPVOID DynamicTable)
+{
+#ifdef _M_X64
+	if (DynamicTable == NULL || *DynamicTable != NULL) {
+		return STATUS_INVALID_PARAMETER;
+	}
+
+	RtlDeleteFunctionTable((PRUNTIME_FUNCTION)*DynamicTable);
+
+	*DynamicTable = NULL;
+
+	return STATUS_SUCCESS;
+#else
+	ASSERT(FALSE);
+	return STATUS_NOT_IMPLEMENTED;
+#endif
+}
