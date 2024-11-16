@@ -17,7 +17,8 @@ Compatibility List.docx"** inside the VxKex installation folder (which is C:\Pro
 Files\VxKex by default) which details these steps, but for the most part, all
 configuration is self-explanatory.
 
-If you are a developer, source code is provided as a 7z file on the releases page.
+If you are a developer, source code is provided as a 7z file on the releases page. Compilation
+instructions are at the bottom of this file.
 
 FAQ
 ===
@@ -120,3 +121,13 @@ API extension is accomplished by editing the program's DLL import table so that
 instead of importing from Windows 8/8.1/10 DLLs, it imports to VxKex DLLs instead.
 These VxKex DLLs contain implementations of Windows API functions which were introduced
 in newer versions of Windows.
+
+**Q: How do I compile MgKex?**
+
+**A:** You need to install Visual Studio 2010 first, as it is the only version that is
+compatible with this software. After this, you need to compile both the x86 and x64
+binaries of the software (beginning with x86). MgKex requires some x86 binaries
+produced by compiling the software in x86 first, before it can be used in x64.
+
+The program "\01-Development Utilities\vautogen\vautogen.exe" will increment the version
+information globally by 1 each time it is executed.
