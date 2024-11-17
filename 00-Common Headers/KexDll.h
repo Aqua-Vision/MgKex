@@ -685,6 +685,18 @@ KEXAPI NTSTATUS NTAPI KexPatchCpiwSubsystemVersionCheck(
 	VOID);
 
 //
+// timezoneapi.c
+//
+
+KEXAPI DWORD WINAPI EnumDynamicTimeZoneInformation(
+	IN	DWORD index,
+	OUT	DYNAMIC_TIME_ZONE_INFORMATION *info);
+
+KEXAPI DWORD WINAPI GetDynamicTimeZoneInformationEffectiveYears(
+	IN	const DYNAMIC_TIME_ZONE_INFORMATION *info,
+	OUT	DWORD *first, DWORD *last);
+
+//
 // System Service Extensions/Hooks
 //
 
