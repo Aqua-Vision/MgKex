@@ -728,6 +728,20 @@ KXBASEAPI LONG WINAPI GetCurrentPackageFullName(
 	IN OUT	PULONG	PackageFullNameLength,
 	OUT		PWSTR	PackageFullName OPTIONAL);
 
+KXBASEAPI LONG WINAPI GetPackagePathByFullName(
+	IN	 PCWSTR PackageFullName,
+	IN OUT PULONG PathLength,
+	OUT	PWSTR  PackagePath OPTIONAL);
+
+KXBASEAPI LONG WINAPI PackageFamilyNameFromId(
+	IN	 ULONG PackageId,
+	IN OUT PULONG NameLength,
+	OUT	PWSTR  PackageFamilyName OPTIONAL);
+
+KXBASEAPI LONG WINAPI GetCurrentPackageFamilyName(
+	IN OUT PULONG NameLength,
+	OUT	PWSTR  PackageFamilyName OPTIONAL);
+
 KXBASEAPI LONG WINAPI GetCurrentPackageId(
 	IN OUT	PULONG	BufferLength,
 	OUT		PBYTE	Buffer OPTIONAL);

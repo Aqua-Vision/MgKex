@@ -49,6 +49,23 @@ KXBASEAPI LONG WINAPI GetPackageFullName(
 	return APPMODEL_ERROR_NO_PACKAGE;
 }
 
+KXBASEAPI LONG WINAPI GetPackagePathByFullName(
+	IN	 PCWSTR PackageFullName,
+	IN OUT PULONG PathLength,
+	OUT	PWSTR  PackagePath OPTIONAL)
+{
+	if (!PackageFullName || !PathLength || (*PathLength && !PackagePath)) {
+		return ERROR_INVALID_PARAMETER;
+	}
+
+	*PathLength = 0;
+	if (PackagePath) {
+		PackagePath[0] = L'\0';
+	}
+
+	return APPMODEL_ERROR_NO_PACKAGE;
+}
+
 KXBASEAPI LONG WINAPI GetPackageFamilyName(
 	IN		HANDLE	ProcessHandle,
 	IN OUT	PULONG	NameLength,
@@ -62,6 +79,39 @@ KXBASEAPI LONG WINAPI GetPackageFamilyName(
 
 	if (PackageFamilyName) {
 		PackageFamilyName[0] = '\0';
+	}
+
+	return APPMODEL_ERROR_NO_PACKAGE;
+}
+
+KXBASEAPI LONG WINAPI PackageFamilyNameFromId(
+	IN	 ULONG PackageId,
+	IN OUT PULONG NameLength,
+	OUT	PWSTR  PackageFamilyName OPTIONAL)
+{
+	if (!NameLength || (*NameLength && !PackageFamilyName)) {
+		return ERROR_INVALID_PARAMETER;
+	}
+
+	*NameLength = 0;
+	if (PackageFamilyName) {
+		PackageFamilyName[0] = L'\0';
+	}
+
+	return APPMODEL_ERROR_NO_PACKAGE;
+}
+
+KXBASEAPI LONG WINAPI GetCurrentPackageFamilyName(
+	IN OUT PULONG NameLength,
+	OUT	PWSTR  PackageFamilyName OPTIONAL)
+{
+	if (!NameLength || (*NameLength && !PackageFamilyName)) {
+		return ERROR_INVALID_PARAMETER;
+	}
+
+	*NameLength = 0;
+	if (PackageFamilyName) {
+		PackageFamilyName[0] = L'\0';
 	}
 
 	return APPMODEL_ERROR_NO_PACKAGE;
